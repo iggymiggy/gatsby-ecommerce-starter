@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 /** Normalize structure of data sourced from Gatsby's GraphQL store */
 const useFetchProductsFromGatsby = () => {
   const { allProductQuery } = useStaticQuery(graphql`
-    query {
+    {
       allProductQuery: allMarkdownRemark(limit: 1000) {
         edges {
           node {
@@ -28,9 +28,7 @@ const useFetchProductsFromGatsby = () => {
               product_images {
                 product_image {
                   childImageSharp {
-                    fluid(maxWidth: 1240, quality: 100) {
-                      ...GatsbyImageSharpFluid
-                    }
+                    gatsbyImageData(quality: 100, layout: FULL_WIDTH)
                   }
                 }
               }
