@@ -7,7 +7,8 @@ const filterProductList = ({ productsIdsAll, productsIdsByCategory, filters }) =
 
   if (filters.categoryIds) {
     productsListFiltered = filters.categoryIds.reduce(
-      (acc, categoryId) => (productsIdsByCategory[categoryId] ? [...acc, ...productsIdsByCategory[categoryId]] : acc),
+      (accumulator, categoryId) =>
+        productsIdsByCategory[categoryId] ? [...accumulator, ...productsIdsByCategory[categoryId]] : accumulator,
       [],
     )
   }

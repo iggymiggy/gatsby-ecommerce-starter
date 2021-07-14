@@ -6,13 +6,15 @@ import Typography from '@material-ui/core/Typography'
 export default function ProductName({ productSelected }) {
   return (
     <Typography component="h1" variant="h4" color="secondary">
-      {productSelected.name}
+      {/* {productSelected.name} */}
+      {productSelected.product_brand}
     </Typography>
   )
 }
 
 ProductName.propTypes = {
   productSelected: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    // name: PropTypes.string.isRequired,
+    product_brand: PropTypes.string.isRequired,
   }).isRequired,
 }

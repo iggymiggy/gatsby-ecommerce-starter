@@ -15,9 +15,9 @@ const globalSku = {
 const generateProductsAndSkus = ({ defaultProduct, defaultSku, skus }) => {
   const productId = slug(defaultProduct.name, slug.defaults.modes.rfc3986)
 
-  const skusGenerated = skus.reduce((acc, { color, image, sizes }) => {
+  const skusGenerated = skus.reduce((accumulator, { color, image, sizes }) => {
     return [
-      ...acc,
+      ...accumulator,
       ...sizes.map(({ size, price }) => ({
         ...globalSku,
         ...defaultSku,

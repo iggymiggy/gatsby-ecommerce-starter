@@ -1,22 +1,28 @@
 const getProducts = (skusList) => {
   return skusList.reduce(
-    (acc, sku) => {
+    (accumulator, sku) => {
       if (!sku.product.active) {
-        return acc
+        return accumulator
       }
 
-      if (!acc.products[sku.product.id]) {
-        acc.products[sku.product.id] = { ...sku.product, skuDefault: null, skuIds: {}, skusByColor: {}, skusBySize: {} }
+      if (!accumulator.products[sku.product.id]) {
+        accumulator.products[sku.product.id] = {
+          ...sku.product,
+          skuDefault: null,
+          skuIds: {},
+          skusByColor: {},
+          skusBySize: {},
+        }
       }
 
       // priceDefault
       const priceDefault =
-        sku.price < acc.products[sku.product.id].priceDefault
+        sku.price < accumulator.products[sku.product.id].priceDefault
           ? sku.price
-          : acc.products[sku.product.id].priceDefault || sku.price
+          : accumulator.products[sku.product.id].priceDefault || sku.price
 
       // skuDefaultId
-      let skuDefaultId = acc.products[sku.product.id].skuDefaultId || null
+      let skuDefaultId = accumulator.products[sku.product.id].skuDefaultId || null
       if (
         sku.attributes.color === sku.product.metadata.defaultColor &&
         sku.attributes.size === sku.product.metadata.defaultSize
@@ -25,45 +31,45 @@ const getProducts = (skusList) => {
       }
 
       // skuIds
-      if (!acc.products[sku.product.id].skuIds[sku.attributes.color]) {
-        acc.products[sku.product.id].skuIds[sku.attributes.color] = {}
+      if (!accumulator.products[sku.product.id].skuIds[sku.attributes.color]) {
+        accumulator.products[sku.product.id].skuIds[sku.attributes.color] = {}
       }
 
       const skuIds = {
-        ...acc.products[sku.product.id].skuIds,
+        ...accumulator.products[sku.product.id].skuIds,
         [sku.attributes.color]: {
-          ...acc.products[sku.product.id].skuIds[sku.attributes.color],
+          ...accumulator.products[sku.product.id].skuIds[sku.attributes.color],
           [sku.attributes.size]: sku.id,
         },
       }
 
       // // skusByColor
-      // if (!acc.products[sku.product.id].skusByColor[sku.attributes.color]) {
-      //   acc.products[sku.product.id].skusByColor[sku.attributes.color] = []
+      // if (!accumulator.products[sku.product.id].skusByColor[sku.attributes.color]) {
+      //   accumulator.products[sku.product.id].skusByColor[sku.attributes.color] = []
       // }
       // const skusByColor = {
-      //   ...(acc.products[sku.product.id].skusByColor ? acc.products[sku.product.id].skusByColor : {}),
-      //   [sku.attributes.color]: [...acc.products[sku.product.id].skusByColor[sku.attributes.color], sku],
+      //   ...(accumulator.products[sku.product.id].skusByColor ? accumulator.products[sku.product.id].skusByColor : {}),
+      //   [sku.attributes.color]: [...accumulator.products[sku.product.id].skusByColor[sku.attributes.color], sku],
       // }
 
       // // skusBySize
-      // if (!acc.products[sku.product.id].skusBySize[sku.attributes.size]) {
-      //   acc.products[sku.product.id].skusBySize[sku.attributes.size] = []
+      // if (!accumulator.products[sku.product.id].skusBySize[sku.attributes.size]) {
+      //   accumulator.products[sku.product.id].skusBySize[sku.attributes.size] = []
       // }
       // const skusBySize = {
-      //   ...(acc.products[sku.product.id].skusBySize ? acc.products[sku.product.id].skusBySize : {}),
-      //   [sku.attributes.size]: [...acc.products[sku.product.id].skusBySize[sku.attributes.size], sku],
+      //   ...(accumulator.products[sku.product.id].skusBySize ? accumulator.products[sku.product.id].skusBySize : {}),
+      //   [sku.attributes.size]: [...accumulator.products[sku.product.id].skusBySize[sku.attributes.size], sku],
       // }
 
       // productsIdsByCategory
-      if (!acc.productsIdsByCategory[sku.attributes.category]) {
-        acc.productsIdsByCategory[sku.attributes.category] = []
+      if (!accumulator.productsIdsByCategory[sku.attributes.category]) {
+        accumulator.productsIdsByCategory[sku.attributes.category] = []
       }
       const productsIdsByCategory = {
-        ...acc.productsIdsByCategory,
+        ...accumulator.productsIdsByCategory,
         [sku.attributes.category]: [
-          ...acc.productsIdsByCategory[sku.attributes.category],
-          ...(acc.productsIdsByCategory[sku.attributes.category].indexOf(sku.product.id) === -1
+          ...accumulator.productsIdsByCategory[sku.attributes.category],
+          ...(accumulator.productsIdsByCategory[sku.attributes.category].indexOf(sku.product.id) === -1
             ? [sku.product.id]
             : []),
         ],
@@ -71,13 +77,13 @@ const getProducts = (skusList) => {
 
       // productsIdsAll
       const productsIdsAll = [
-        ...acc.productsIdsAll,
-        ...(acc.productsIdsAll.indexOf(sku.product.id) === -1 ? [sku.product.id] : []),
+        ...accumulator.productsIdsAll,
+        ...(accumulator.productsIdsAll.indexOf(sku.product.id) === -1 ? [sku.product.id] : []),
       ]
 
       return {
         products: {
-          ...acc.products,
+          ...accumulator.products,
           [sku.product.id]: {
             ...sku.product,
             priceDefault,
@@ -88,7 +94,7 @@ const getProducts = (skusList) => {
           },
         },
         skus: {
-          ...acc.skus,
+          ...accumulator.skus,
           [sku.id]: sku,
         },
         productsIdsAll,

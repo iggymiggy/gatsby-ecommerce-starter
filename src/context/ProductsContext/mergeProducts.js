@@ -5,8 +5,8 @@ const mergeProducts = ({ dataGatsby, dataStripe }) => {
       productsIdsAll: dataGatsby.productsIdsAll,
       productsIdsByCategory: dataGatsby.productsIdsByCategory,
       skus: Object.keys(dataGatsby.skus).reduce(
-        (acc, skuId) => ({
-          ...acc,
+        (accumulator, skuId) => ({
+          ...accumulator,
           [skuId]: {
             ...dataGatsby.skus[skuId],
             product: undefined,
@@ -19,16 +19,16 @@ const mergeProducts = ({ dataGatsby, dataStripe }) => {
   }
 
   const products = Object.values(dataGatsby.products).reduce(
-    (acc, product) => ({
-      ...acc,
+    (accumulator, product) => ({
+      ...accumulator,
       [product.id]: { ...product, ...dataStripe.products[product.id] },
     }),
     {},
   )
 
   const skus = Object.values(dataGatsby.skus).reduce(
-    (acc, sku) => ({
-      ...acc,
+    (accumulator, sku) => ({
+      ...accumulator,
       [sku.id]: { ...sku, ...dataStripe.skus[sku.id], product: undefined, productId: sku.product.id },
     }),
     {},

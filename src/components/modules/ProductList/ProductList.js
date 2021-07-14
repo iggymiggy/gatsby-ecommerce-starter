@@ -15,13 +15,15 @@ import filterProductList from './filterProductList'
 
 export default function ProductList({ filters }) {
   const { isMobile } = useThemeContext()
-  const { products, skus, productsIdsAll, productsIdsByCategory } = useProductsContext()
+  // const { products, skus, productsIdsAll, productsIdsByCategory } = useProductsContext()
+  const { products } = useProductsContext()
 
-  const productsListFiltered = filterProductList({ productsIdsAll, productsIdsByCategory, filters })
+  // const productsListFiltered = filterProductList({ productsIdsAll, productsIdsByCategory, filters })
 
   return (
     <GridList cols={isMobile ? 2 : 4} cellHeight="auto">
-      {productsListFiltered.map((productId) => (
+      peelo2
+      {/* {productsListFiltered.map((productId) => (
         <GridListTile key={productId}>
           <Link to={`/${skus[products[productId].skuDefaultId].fields.slug}`}>
             <ImageLocal localFiles={products[productId].localFiles} alt={products[productId].name} />
@@ -31,7 +33,7 @@ export default function ProductList({ filters }) {
             </ProductDetails>
           </Link>
         </GridListTile>
-      ))}
+      ))} */}
     </GridList>
   )
 }

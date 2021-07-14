@@ -1,46 +1,40 @@
 import { useStaticQuery, graphql } from 'gatsby'
 
-import getProducts from './getProducts'
+// import getProducts from './getProducts'
 
 /** Normalize structure of data sourced from Gatsby's GraphQL store */
 const useFetchProductsFromGatsby = () => {
-  const { allStripeSku } = useStaticQuery(graphql`
-    query skuList($maxWidth: Int = 800, $quality: Int = 92) {
-      allStripeSku(filter: { product: { active: { eq: true } } }) {
+  const { allProductQuery } = useStaticQuery(graphql`
+    query {
+      allProductQuery: allMarkdownRemark(limit: 1000) {
         edges {
           node {
             id
-            price
             fields {
               slug
             }
-            attributes {
-              category
-              color
-              size
-            }
-            localFiles {
-              childImageSharp {
-                fluid(maxWidth: $maxWidth, quality: $quality) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                }
-              }
-            }
-            product {
-              active
-              id
-              name
-              metadata {
-                defaultColor
-                defaultSize
-              }
-              localFiles {
-                childImageSharp {
-                  fluid(maxWidth: $maxWidth, quality: $quality) {
-                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            frontmatter {
+              tags
+              templateKey
+              sportKey
+              product_category
+              description
+              date(formatString: "MMMM DD, YYYY")
+              product_brand
+              product_brand_model
+              product_year_model
+              product_size
+              product_discount_percentage
+              product_images {
+                product_image {
+                  childImageSharp {
+                    fluid(maxWidth: 1240, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
                   }
                 }
               }
+              product_video_url
             }
           }
         }
@@ -50,7 +44,7 @@ const useFetchProductsFromGatsby = () => {
 
   return {
     loading: false,
-    data: getProducts(allStripeSku.edges.map(({ node }) => node)),
+    data: allProductQuery.edges,
   }
 }
 
