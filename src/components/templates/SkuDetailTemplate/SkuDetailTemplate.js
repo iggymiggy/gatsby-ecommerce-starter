@@ -20,24 +20,33 @@ import Description from './Description'
 import Delivery from './Delivery'
 
 export default function SkuDetailPage({ pageContext: { id } }) {
-  const [{ skuSizeSelected }] = useCartContext()
-  // const { data } = useFetchProductsFromGatsby()
-  // const { context } = useProductsContext()
-  const { node } = findProductElementById(useProductsContext(), id)
-  console.log('products')
-  console.log(node)
-  console.log(findProductElementById(useProductsContext(), 'fdsjflkdjsfkds'))
   const { isMobile } = useThemeContext()
+  const node = findProductElementById(useProductsContext(), id)
+  const productSelected = node.node
 
-  // this sku does not contain the right size
-  // the size is handle in the local state
-  // const skuSelected = skus[id]
-  // const productSelected = products['noe']
-
-  // const [sizeSelected, setSizeSelected] = useState(skuSizeSelected || productSelected.metadata.defaultSize)
-  // const skuIdSelectedWithSize = productSelected.skuIds[skuSelected.attributes.color][sizeSelected]
-
-  return <PageContent>peelo</PageContent>
+  return (
+    <PageContent>
+      <ProductImage $isMobile={isMobile}>
+        <ImageLocal localFiles={productSelected.frontmatter.product_images} alt={productSelected.product_brand} />
+      </ProductImage>
+      <ProductDetails>
+        <ProductName productSelected={productSelected} />
+        <Divider />
+        {/* <SkuPrice skuSelected={skuSelected} /> */}
+        {/* <ProductColors productSelected={productSelected} skus={skus} skuSelected={skuSelected} /> */}
+        {/* <ProductSizes
+          productSelected={productSelected}
+          skuSelected={skuSelected}
+          sizeSelected={sizeSelected}
+          setSizeSelected={setSizeSelected}
+        /> */}
+        {/* <AddToCartButton skuIdSelectedWithSize={skuIdSelectedWithSize} /> */}
+        <Delivery />
+        <hr />
+        <Description />
+      </ProductDetails>
+    </PageContent>
+  )
 }
 
 SkuDetailPage.propTypes = {

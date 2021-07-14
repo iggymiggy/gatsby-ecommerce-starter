@@ -7,7 +7,7 @@ export default function ProductName({ productSelected }) {
   return (
     <Typography component="h1" variant="h4" color="secondary">
       {/* {productSelected.name} */}
-      {productSelected.product_brand}
+      {productSelected.frontmatter.product_brand}
     </Typography>
   )
 }
