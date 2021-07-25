@@ -44,7 +44,25 @@ module.exports = {
     //   },
     // },
     'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
+    // 'gatsby-plugin-sharp',
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`],
+          placeholder: `dominantColor`,
+          quality: 50,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`,
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        }
+      }
+    },
     'gatsby-plugin-image',
     // {
       // The web app manifest (part of the PWA specification) enabled by this plugin allows users to add your site to their home screen on most mobile browsers
