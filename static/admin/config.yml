@@ -1,0 +1,561 @@
+backend:
+  name: github
+  branch: main
+  repo: iggymiggy/noroutine-netlify-cms
+  base_url: https://noroutine-cms-functions.azurewebsites.net
+  commit_messages:
+    create: 'Create {{collection}} “{{slug}}”'
+    update: 'Update {{collection}} “{{slug}}”'
+    delete: 'Delete {{collection}} “{{slug}}”'
+    uploadMedia: '[skip ci] Upload “{{path}}”'
+    deleteMedia: '[skip ci] Delete “{{path}}”'
+
+publish_mode: editorial_workflow
+# new branch names are created according to the pattern cms/collectionName-entrySlug
+
+# Local development:
+# npm install
+# npx netlify-cms-proxy-server
+# netlify dev
+local_backend: true
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: 'blog'
+    label: 'Blog'
+    folder: 'src/pages/blog'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'blog-post' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'text' }
+      - { label: 'Featured Post', name: 'featuredpost', widget: 'boolean' }
+      - { label: 'Featured Image', name: 'featuredimage', widget: image }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
+    view_groups:
+      - label: Year
+        field: date
+        pattern: \d{4}
+
+  # ----------------------------------------------------------------------
+  # Leijalautailu
+  # ----------------------------------------------------------------------
+
+  - name: 'kite-course'
+    label: 'Leijalautailu - kurssit'
+    folder: 'src/pages/kite/course'
+    create: true
+    slug: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    summary: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    fields:
+      - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'course-page' }
+      - { label: 'Sport Key', name: 'sportKey', widget: 'hidden', default: 'kite' }
+      - { label: 'Description', name: 'description', widget: 'hidden', default: '' }
+      - { label: 'Sijainti', name: 'title', widget: 'string' }
+      - { label: 'Päivämäärä', name: 'date', widget: 'datetime' }
+      - { label: 'Kuva', name: 'image', widget: image }
+      - { label: 'Teksti', name: 'body', widget: 'markdown' }
+
+  - name: 'kite-product-board'
+    label: 'Leijalautailu - laudat'
+    folder: 'src/pages/kite/product/board'
+    create: true
+    slug: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    summary: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    fields:
+      - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'product-page' }
+      - { label: 'Sport Key', name: 'sportKey', widget: 'hidden', default: 'kite' }
+      - { label: 'Product category Key', name: 'product_category', widget: 'hidden', default: 'board' }
+      - { label: 'Description', name: 'description', widget: 'hidden', default: '' }
+      - { label: 'Otsikko', name: 'title', widget: 'string' }
+      - { label: 'Merkki', name: 'brand', widget: 'string' }
+      - { label: 'Tuotemalli', name: 'product_model', widget: 'string' }
+      - { label: 'Päivämäärä', name: 'date', widget: 'datetime' }
+      - { label: 'Kuva', name: 'image', widget: image }
+      - { label: 'Tuotekuvaus', name: 'body', widget: 'markdown' }
+
+  - name: 'kite-product-kite'
+    label: 'Leijalautailu - leijat'
+    folder: 'src/pages/kite/product/kite'
+    create: true
+    slug: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    summary: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    fields:
+      - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'product-page' }
+      - { label: 'Sport Key', name: 'sportKey', widget: 'hidden', default: 'kite' }
+      - { label: 'Product category Key', name: 'product_category', widget: 'hidden', default: 'kite' }
+      - { label: 'Description', name: 'description', widget: 'hidden', default: '' }
+      - { label: 'Otsikko', name: 'title', widget: 'string' }
+      - { label: 'Päivämäärä', name: 'date', widget: 'datetime' }
+      - { label: 'Kuva', name: 'image', widget: image }
+      - { label: 'Tuotekuvaus', name: 'body', widget: 'markdown' }
+
+  - name: 'kite-product-control-system'
+    label: 'Leijalautailu - leijat'
+    folder: 'src/pages/kite/product/kite'
+    create: true
+    slug: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    summary: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    fields:
+      - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'product-page' }
+      - { label: 'Sport Key', name: 'sportKey', widget: 'hidden', default: 'kite' }
+      - { label: 'Product category Key', name: 'product_category', widget: 'hidden', default: 'control-system' }
+      - { label: 'Description', name: 'description', widget: 'hidden', default: '' }
+      - { label: 'Otsikko', name: 'title', widget: 'string' }
+      - { label: 'Päivämäärä', name: 'date', widget: 'datetime' }
+      - { label: 'Kuva', name: 'image', widget: image }
+      - { label: 'Tuotekuvaus', name: 'body', widget: 'markdown' }
+
+  # ----------------------------------------------------------------------
+  # Purjelautailu
+  # ----------------------------------------------------------------------
+
+  - name: 'windsurf-course'
+    label: 'Purjelautailu - kurssit'
+    folder: 'src/pages/windsurf/course'
+    create: true
+    slug: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    summary: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    fields:
+      - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'course-page' }
+      - { label: 'Sport Key', name: 'sportKey', widget: 'hidden', default: 'windsurf' }
+      - { label: 'Description', name: 'description', widget: 'hidden', default: '' }
+      - { label: 'Sijainti', name: 'title', widget: 'string' }
+      - { label: 'Päivämäärä', name: 'date', widget: 'datetime' }
+      - { label: 'Kuva', name: 'image', widget: image }
+      - { label: 'Teksti', name: 'body', widget: 'markdown' }
+
+  - name: 'windsurf-product-board'
+    label: 'Purjelautailu - laudat'
+    folder: 'src/pages/windsurf/product/board'
+    create: true
+    slug: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    summary: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    fields:
+      - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'product-page-new-temp' }
+      - { label: 'Sport Key', name: 'sportKey', widget: 'hidden', default: 'windsurf' }
+      - { label: 'Product category Key', name: 'product_category', widget: 'hidden', default: 'board' }
+      - { label: 'Laudan tyyppi', name: 'product_sub_category', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'hidden', default: '' }
+      - { label: 'Päivämäärä', name: 'date', widget: 'datetime' }
+      - { label: 'Merkki', name: 'product_brand', widget: 'string' }
+      - { label: 'Malli', name: 'product_brand_model', widget: 'string' }
+      - { label: 'Vuosimalli', name: 'product_year_model', widget: 'string' }
+      - { label: 'Koko', name: 'product_size', widget: 'string' }
+      # - {
+      #     label: 'Miehet, Naiset, Unisex',
+      #     name: 'gender_category',
+      #     widget: 'options',
+      #     multiple: 'false',
+      #     options: ['Miehet', 'Naiset', 'Unisex']
+      #   }
+      - { label: 'Alennusprosentti', name: 'product_discount_percentage', widget: 'string', optional: 'false' }
+      - { label: 'Kuvat', name: 'product_images', widget: 'list', fields: [{ label: 'Kuva', name: 'product_image', widget: 'image' }] }
+      - { label: 'Video URL-osoite', name: 'product_video_url', widget: 'string', optional: 'false' }
+      - { label: 'Tuotekuvaus', name: 'body', widget: 'markdown' }
+
+  - name: 'windsurf-product-sail'
+    label: 'Purjelautailu - purjeet'
+    folder: 'src/pages/windsurf/product/sail'
+    create: true
+    slug: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    summary: '{{fields.title}}-{{day}}-{{month}}-{{year}}'
+    fields:
+      - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'product-page' }
+      - { label: 'Sport Key', name: 'sportKey', widget: 'hidden', default: 'windsurf' }
+      - { label: 'Product category Key', name: 'product_category', widget: 'hidden', default: 'sail' }
+      - { label: 'Description', name: 'description', widget: 'hidden', default: '' }
+      - { label: 'Otsikko', name: 'title', widget: 'string' }
+      - { label: 'Päivämäärä', name: 'date', widget: 'datetime' }
+      - { label: 'Kuva', name: 'image', widget: image }
+      - { label: 'Tuotekuvaus', name: 'body', widget: 'markdown' }
+
+  # ----------------------------------------------------------------------
+  # Wingsurf
+  # ----------------------------------------------------------------------
+
+  # ----------------------------------------------------------------------
+  # SUP-lautailu
+  # ----------------------------------------------------------------------
+
+  - name: 'course2'
+    label: 'Kurssi'
+    folder: 'src/pages/kite/course'
+    create: true
+    slug: '{{fields.location}}-{{month}}-{{year}}'
+    fields:
+      - label: 'Template Key'
+        name: 'templateKey'
+        widget: 'hidden'
+        default: 'kite-course'
+
+      - label: 'Päivämäärä'
+        name: 'date'
+        widget: 'datetime'
+
+      - label: 'Sijainti'
+        name: 'location'
+        widget: 'string'
+
+      - label: 'Laji'
+        name: 'sport'
+        widget: 'select'
+        multiple: false
+        options: ['Leija', 'Purjelautailu', 'Wingsurf', 'Sup-lautailu']
+
+      - label: 'Kuva'
+        name: 'featuredimage'
+        widget: image
+
+      - label: 'Leipäteksti'
+        name: 'body'
+        widget: 'markdown'
+
+  - name: 'product'
+    label: 'Tuote'
+    folder: 'src/pages/kite/product'
+    create: true
+    slug: '{{fields.location}}-{{month}}-{{year}}'
+    fields:
+      - label: 'Template Key'
+        name: 'templateKey'
+        widget: 'hidden'
+        default: 'kite-product'
+
+      - label: 'Otsikko'
+        name: 'title'
+        widget: 'string'
+
+      - label: 'Päivämäärä'
+        name: 'date'
+        widget: 'datetime'
+
+      - label: 'Laji'
+        name: 'sport'
+        widget: 'select'
+        multiple: false
+        options: ['Leija', 'Purjelautailu', 'Wingsurf', 'Sup-lautailu']
+
+      - label: 'Tuote'
+        name: 'product'
+        widget: 'select'
+        multiple: false
+        options: ['lauta', 'puomi', 'leija']
+
+      - label: 'Merkki'
+        name: 'mark'
+        widget: 'select'
+        multiple: false
+        options: ['Naish', 'RRD']
+
+      - label: 'Tuotemalli'
+        name: 'product_model'
+        widget: 'string'
+
+      - label: 'Kuva'
+        name: 'featuredimage'
+        widget: image
+
+      - label: 'Kuvaus'
+        name: 'body'
+        widget: 'markdown'
+
+  - name: 'wetsuit'
+    label: 'Asusteet'
+    folder: 'src/pages/kite/product'
+    create: true
+    slug: '{{fields.location}}-{{month}}-{{year}}'
+    fields:
+      - label: 'Template Key'
+        name: 'templateKey'
+        widget: 'hidden'
+        default: 'kite-product'
+
+      - label: 'Otsikko'
+        name: 'title'
+        widget: 'string'
+
+      - label: 'Päivämäärä'
+        name: 'date'
+        widget: 'datetime'
+
+      - label: 'Asuste'
+        name: 'sport'
+        widget: 'select'
+        multiple: true
+        options: ['Tossut', 'Hanskat', 'Rushguard', 'Lippikset']
+
+      - label: 'Merkki'
+        name: 'mark'
+        widget: 'select'
+        multiple: false
+        options: ['Naish', 'RRD', 'Prolimit']
+
+      - label: 'Tuotemalli'
+        name: 'product_model'
+        widget: 'string'
+
+      - label: 'Kuva'
+        name: 'featuredimage'
+        widget: image
+
+      - label: 'Kuvaus'
+        name: 'body'
+        widget: 'markdown'
+
+  - name: 'kiteboards'
+    label: 'Leijalaudat'
+    folder: 'src/pages/kite/product'
+    create: true
+    slug: '{{fields.location}}-{{month}}-{{year}}'
+    fields:
+      - label: 'Template Key'
+        name: 'templateKey'
+        widget: 'hidden'
+        default: 'kite-boards'
+
+      - label: 'Otsikko'
+        name: 'title'
+        widget: 'string'
+
+      - label: 'Päivämäärä'
+        name: 'date'
+        widget: 'datetime'
+
+      - label: 'Leijalaudat'
+        name: 'sport'
+        widget: 'select'
+        multiple: true
+        options: ['Twintip', 'Surflauta', 'Hydrofoil']
+
+      - label: 'Merkki'
+        name: 'mark'
+        widget: 'select'
+        multiple: false
+        options: ['Naish', 'RRD']
+
+      - label: 'Tuotemalli'
+        name: 'product_model'
+        widget: 'string'
+
+      - label: 'Kuva'
+        name: 'featuredimage'
+        widget: image
+
+      - label: 'Kuvaus'
+        name: 'body'
+        widget: 'markdown'
+
+  - name: 'pages'
+    label: 'Pages'
+    files:
+      - file: 'src/pages/index.md'
+        label: 'Landing Page'
+        name: 'index'
+        fields:
+          - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'index-page' }
+          - { label: Title, name: title, widget: string }
+          - { label: Image, name: image, widget: image }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Subheading, name: subheading, widget: string }
+          - {
+              label: Mainpitch,
+              name: mainpitch,
+              widget: object,
+              fields: [{ label: Title, name: title, widget: string }, { label: Description, name: description, widget: text }]
+            }
+          - { label: Description, name: description, widget: string }
+          - {
+              label: Intro,
+              name: intro,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Description, name: description, widget: text },
+                  {
+                    label: Blurbs,
+                    name: blurbs,
+                    widget: list,
+                    fields: [{ label: Image, name: image, widget: image }, { label: Text, name: text, widget: text }]
+                  }
+                ]
+            }
+          - {
+              label: Main,
+              name: main,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Description, name: description, widget: text },
+                  {
+                    label: Image1,
+                    name: image1,
+                    widget: object,
+                    fields: [{ label: Image, name: image, widget: image }, { label: Alt, name: alt, widget: string }]
+                  },
+                  {
+                    label: Image2,
+                    name: image2,
+                    widget: object,
+                    fields: [{ label: Image, name: image, widget: image }, { label: Alt, name: alt, widget: string }]
+                  },
+                  {
+                    label: Image3,
+                    name: image3,
+                    widget: object,
+                    fields: [{ label: Image, name: image, widget: image }, { label: Alt, name: alt, widget: string }]
+                  }
+                ]
+            }
+      - file: 'src/pages/about/index.md'
+        label: 'About'
+        name: 'about'
+        fields:
+          - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page' }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Body', name: 'body', widget: 'markdown' }
+      - file: 'src/pages/products/index.md'
+        label: 'Products Page'
+        name: 'products'
+        fields:
+          - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'product-page-original-example' }
+          - { label: Title, name: title, widget: string }
+          - { label: Image, name: image, widget: image }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Description, name: description, widget: string }
+          - {
+              label: Intro,
+              name: intro,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Description, name: description, widget: text },
+                  {
+                    label: Blurbs,
+                    name: blurbs,
+                    widget: list,
+                    fields: [{ label: Image, name: image, widget: image }, { label: Text, name: text, widget: text }]
+                  }
+                ]
+            }
+          - {
+              label: Main,
+              name: main,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Description, name: description, widget: text },
+                  {
+                    label: Image1,
+                    name: image1,
+                    widget: object,
+                    fields: [{ label: Image, name: image, widget: image }, { label: Alt, name: alt, widget: string }]
+                  },
+                  {
+                    label: Image2,
+                    name: image2,
+                    widget: object,
+                    fields: [{ label: Image, name: image, widget: image }, { label: Alt, name: alt, widget: string }]
+                  },
+                  {
+                    label: Image3,
+                    name: image3,
+                    widget: object,
+                    fields: [{ label: Image, name: image, widget: image }, { label: Alt, name: alt, widget: string }]
+                  }
+                ]
+            }
+          - {
+              label: Testimonials,
+              name: testimonials,
+              widget: list,
+              fields: [{ label: Quote, name: quote, widget: string }, { label: Author, name: author, widget: string }]
+            }
+          - { label: Full_image, name: full_image, widget: image }
+          - {
+              label: Pricing,
+              name: pricing,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Description, name: description, widget: string },
+                  {
+                    label: Plans,
+                    name: plans,
+                    widget: list,
+                    fields:
+                      [
+                        { label: Plan, name: plan, widget: string },
+                        { label: Price, name: price, widget: string },
+                        { label: Description, name: description, widget: string },
+                        { label: Items, name: items, widget: list }
+                      ]
+                  }
+                ]
+            }
+      - file: 'src/pages/kites/index.md'
+        label: 'Kites Page'
+        name: 'kites'
+        slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+        fields:
+          - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'kite-page' }
+          - { label: Title, name: title, widget: string }
+          - { label: Image, name: image, widget: image }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Description, name: description, widget: string }
+          - {
+              name: course,
+              label: Kurssit,
+              folder: 'src/pages/kite/course',
+              create: true,
+              slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Description, name: description, widget: text },
+                  {
+                    label: Blurbs,
+                    name: blurbs,
+                    widget: list,
+                    fields:
+                      [
+                        { label: Title, name: title, widget: string },
+                        { label: Image, name: image, widget: image },
+                        { label: Text, name: text, widget: text }
+                      ]
+                  }
+                ]
+            }
+          - {
+              label: Pricing,
+              name: pricing,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Description, name: description, widget: string },
+                  {
+                    label: Plans,
+                    name: plans,
+                    widget: list,
+                    fields:
+                      [
+                        { label: Plan, name: plan, widget: string },
+                        { label: Price, name: price, widget: string },
+                        { label: Description, name: description, widget: string },
+                        { label: Items, name: items, widget: list }
+                      ]
+                  }
+                ]
+            }
