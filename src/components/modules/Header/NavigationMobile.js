@@ -10,8 +10,9 @@ import React from 'react'
 import { navigate } from 'gatsby'
 import { useI18next, useTranslation } from 'gatsby-plugin-react-i18next'
 
-import Button from 'components/foundations/Button/Button'
-import Logo from 'components/elements/Logo/Logo'
+import Button from '../../foundations/Button/Button'
+import Logo from '../../elements/Logo/Logo'
+
 
 import { LogoWrapper } from './NavigationMobile.styles'
 

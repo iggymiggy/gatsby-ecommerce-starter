@@ -31,11 +31,11 @@ module.exports = async function createCategoryPages({ graphql, createPage }) {
 
   // Iterate through each product, putting all found sport/category into `sportCategories`
   posts.forEach((edge) => {
-    if (_.get(edge, `node.frontmatter.sportKey`)) {
+    if (_.get(edge, 'node.frontmatter.sportKey')) {
       console.log(`Page: ${edge.node.frontmatter.sportKey}`)
       console.log(`sportCategories: ${sportCategories}`)
 
-      if (_.get(edge, `node.frontmatter.product_category`)) {
+      if (_.get(edge, 'node.frontmatter.product_category')) {
         if (!(edge.node.frontmatter.sportKey in sportCategories)) {
           sportCategories[edge.node.frontmatter.sportKey] = [edge.node.frontmatter.product_category]
           // sportCategories.push({
@@ -77,7 +77,7 @@ module.exports = async function createCategoryPages({ graphql, createPage }) {
 
       createPage({
         path: categoryPath,
-        component: path.resolve(`src/components/templates/CategoryTemplate/CategoryTemplate.js`),
+        component: path.resolve('src/components/templates/CategoryTemplate/CategoryTemplate.js'),
         context: {
           sportCategory,
           productCategory,

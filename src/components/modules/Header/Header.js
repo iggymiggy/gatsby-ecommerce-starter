@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container'
 import { useTranslation } from 'react-i18next'
 
 import { useThemeContext } from 'context/ThemeContext'
-import Logo from 'components/elements/Logo/Logo'
+import Logo from '../../elements/Logo/Logo'
 
 import Cart from './Cart'
 import { Toolbar, LogoWrapper } from './Header.styles'

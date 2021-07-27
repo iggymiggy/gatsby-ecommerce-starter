@@ -42,7 +42,7 @@ export default function SkuDetailPage({ pageContext: { id } }) {
   console.log('url')
   console.log(url)
 
-  const thumbnail_src = 'require(' + src + ')'
+  const thumbnail_src = `require(${src})`
   const images = [
     {
       // original: 'http://localhost:8000/static/277733984de58dd6d27eed18b510250d/33698/coffee.webp',
@@ -64,7 +64,7 @@ export default function SkuDetailPage({ pageContext: { id } }) {
   return (
     <PageContent>
       <ProductImage $isMobile={isMobile}>
-        <PhotoGallery images={images}/>
+        <PhotoGallery images={images} />
         {/* <ImageLocal localFiles={productSelected.frontmatter.product_images} alt={productSelected.product_brand} /> */}
       </ProductImage>
       <ProductDetails>
@@ -94,4 +94,3 @@ SkuDetailPage.propTypes = {
     id: PropTypes.string.isRequired,
   }).isRequired,
 }
-  

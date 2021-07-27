@@ -2,7 +2,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 
-import SEO from 'components/elements/SEO/SEO'
+import SEO from '../../elements/SEO/SEO'
 import { useCartContext } from 'context/CartContext'
 import { useThemeContext } from 'context/ThemeContext'
 import { useProductsContext } from 'context/ProductsContext'

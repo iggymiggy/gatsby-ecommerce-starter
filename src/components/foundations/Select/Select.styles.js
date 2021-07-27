@@ -3,7 +3,6 @@ import FormControl_ from '@material-ui/core/FormControl'
 import NativeSelect_ from '@material-ui/core/NativeSelect'
 import theme from 'theme'
 
-// eslint-disable-next-line import/prefer-default-export
 export const FormControl = styled(FormControl_)`
   border: 2px ${theme.palette.secondary.main} solid;
   border-radius: 5px;

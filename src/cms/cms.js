@@ -11,8 +11,8 @@ import AboutPagePreview from './preview-templates/AboutPagePreview'
 CMS.registerMediaLibrary(uploadcare)
 CMS.registerMediaLibrary(cloudinary)
 
-CMS.registerPreviewTemplate('index', IndexPagePreview)
+// CMS.registerPreviewTemplate('index', IndexPagePreview)
 CMS.registerPreviewTemplate('about', AboutPagePreview)
-CMS.registerPreviewTemplate('products', ProductPagePreview)
-CMS.registerPreviewTemplate('kites', KitePagePreview)
-CMS.registerPreviewTemplate('blog', BlogPostPreview)
+// CMS.registerPreviewTemplate('products', ProductPagePreview)
+// CMS.registerPreviewTemplate('kites', KitePagePreview)
+// CMS.registerPreviewTemplate('blog', BlogPostPreview)

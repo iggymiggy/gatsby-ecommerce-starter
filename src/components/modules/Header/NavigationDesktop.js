@@ -3,7 +3,7 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { useTranslation, useI18next } from 'gatsby-plugin-react-i18next'
 
-import Link from 'components/foundations/Link/Link'
+import Link from '../../foundations/Link/Link'
 
 import { NavBar, NavBarItem } from './NavigationDesktop.styles'
 

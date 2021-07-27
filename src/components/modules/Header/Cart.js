@@ -1,8 +1,8 @@
 import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 
-import Link from 'components/foundations/Link/Link'
 import { useCartContext } from 'context/CartContext'
+import Link from '../../foundations/Link/Link'
 
 import { Badge } from './Cart.styles'
 

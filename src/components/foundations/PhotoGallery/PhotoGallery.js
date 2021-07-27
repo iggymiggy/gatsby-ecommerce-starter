@@ -27,18 +27,15 @@ class PhotoGallery extends React.Component {
       thumbnailPosition: 'bottom',
       showVideo: {},
       useWindowKeyDown: true,
-      handle: undefined
+      handle: undefined,
     }
 
-
-
-    this.images  = Object.keys(this.props.images).map((keyName, keyIndex) => {
-      if (typeof this.props.images[keyName].embedUrl !== "undefined") {
-        return {...this.props.images[keyName], renderItem: this._renderVideo.bind(this)};
-      } else {
-        return this.props.images[keyName];
+    this.images = Object.keys(this.props.images).map((keyName, keyIndex) => {
+      if (typeof this.props.images[keyName].embedUrl !== 'undefined') {
+        return { ...this.props.images[keyName], renderItem: this._renderVideo.bind(this) }
       }
-    });
+      return this.props.images[keyName]
+    })
     console.log('images')
     console.log(this.images)
 
@@ -74,8 +71,6 @@ class PhotoGallery extends React.Component {
     // // ].concat(this._getStaticImages())
     // ]
   }
-
-
 
   _onImageClick(event) {
     this._mouseOver()
@@ -142,9 +137,10 @@ class PhotoGallery extends React.Component {
   }
 
   _toggleShowVideo(url) {
-    this.state.showVideo[url] = !this.state.showVideo[url]
+    // this.state.showVideo[url] = !this.state.showVideo[url]
     this.setState({
-      showVideo: this.state.showVideo,
+      // showVideo: this.state.showVideo,
+      showVideo: !this.state.showVideo[url],
     })
 
     if (this.state.showVideo[url]) {
@@ -158,22 +154,21 @@ class PhotoGallery extends React.Component {
     }
   }
 
-
   _mouseLeave() {
     this.setState({
       showNav: false,
       showBullets: false,
       showFullscreenButton: false,
       showGalleryFullscreenButton: false,
-      showIndex: false
+      showIndex: false,
 
-        // isButtonDisabled: true
-    });
+      // isButtonDisabled: true
+    })
 
     console.debug('_mouseLeave')
   }
 
-  _mouseOver () {
+  _mouseOver() {
     // event.preventDefault();
 
     this.setState({
@@ -181,8 +176,8 @@ class PhotoGallery extends React.Component {
       showBullets: true,
       showFullscreenButton: true,
       showGalleryFullscreenButton: true,
-      showIndex: true
-    });
+      showIndex: true,
+    })
 
     console.debug('_mouseOver HANDLE')
     console.debug(this.state.handle)
@@ -196,12 +191,13 @@ class PhotoGallery extends React.Component {
             <a className="close-video" onClick={this._toggleShowVideo.bind(this, item.embedUrl)} />
             {/* <iframe width="560" height="315" src={item.embedUrl} frameBorder="0" allowFullScreen /> */}
             <ReactPlayer
-              url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+              url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
               config={{
                 youtube: {
-                  playerVars: { showinfo: 1, autoplay: 1, controls: 1 }
-                }
-              }}/>
+                  playerVars: { showinfo: 1, autoplay: 1, controls: 1 },
+                },
+              }}
+            />
             {/* <iframe width="560" height="315" src={item.embedUrl} frameBorder="0" allowFullScreen /> */}
           </div>
         ) : (
@@ -219,18 +215,16 @@ class PhotoGallery extends React.Component {
     )
   }
 
-
-
   render() {
     // const { images } = this.props
 
     return (
-      <div onMouseOver={this._mouseOver.bind(this)} onMouseLeave={this._mouseLeave.bind(this)} >
+      <div onMouseOver={this._mouseOver.bind(this)} onMouseLeave={this._mouseLeave.bind(this)}>
         <ImageGallery
           ref={(i) => (this._imageGallery = i)}
           items={this.images}
           // items={images}
-          lazyLoad={true}
+          lazyLoad
           onClick={this._onImageClick.bind(this)}
           onImageLoad={this._onImageLoad}
           onSlide={this._onSlide.bind(this)}

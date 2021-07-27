@@ -88,7 +88,7 @@ module.exports = async function createPages({ actions, graphql }) {
         tags: edge.node.frontmatter.tags,
         component: path.resolve(
           // `src/components/templates/${String(edge.node.frontmatter.templateKey)}.js`
-          `src/components/templates/SkuDetailTemplate/SkuDetailTemplate.js`,
+          'src/components/templates/SkuDetailTemplate/SkuDetailTemplate.js',
         ),
         // additional data can be passed via context
         context: {
@@ -102,11 +102,11 @@ module.exports = async function createPages({ actions, graphql }) {
 
     // Iterate through each product, putting all found sport/category into `sportCategories`
     posts.forEach((edge) => {
-      if (_.get(edge, `node.frontmatter.sportKey`)) {
+      if (_.get(edge, 'node.frontmatter.sportKey')) {
         console.log(`Page: ${edge.node.frontmatter.sportKey}`)
         console.log(`sportCategories: ${sportCategories}`)
 
-        if (_.get(edge, `node.frontmatter.product_category`)) {
+        if (_.get(edge, 'node.frontmatter.product_category')) {
           if (!(edge.node.frontmatter.sportKey in sportCategories)) {
             sportCategories[edge.node.frontmatter.sportKey] = [edge.node.frontmatter.product_category]
             // sportCategories.push({
