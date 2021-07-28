@@ -137,11 +137,12 @@ class PhotoGallery extends React.Component {
   }
 
   _toggleShowVideo(url) {
-    // this.state.showVideo[url] = !this.state.showVideo[url]
+
     this.setState({
-      // showVideo: this.state.showVideo,
-      showVideo: !this.state.showVideo[url],
-    })
+      showVideo: {
+        [url]: !this.state.showVideo[url],
+      }
+    });
 
     if (this.state.showVideo[url]) {
       if (this.state.showPlayButton) {
@@ -179,8 +180,6 @@ class PhotoGallery extends React.Component {
       showIndex: true,
     })
 
-    console.debug('_mouseOver HANDLE')
-    console.debug(this.state.handle)
   }
 
   _renderVideo(item) {
