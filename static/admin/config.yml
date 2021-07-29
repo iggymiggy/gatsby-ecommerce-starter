@@ -19,8 +19,8 @@ publish_mode: editorial_workflow
 # netlify dev
 local_backend: true
 
-media_folder: static/img
-public_folder: /img
+media_folder: static/images
+public_folder: /images
 
 collections:
   - name: 'blog'
