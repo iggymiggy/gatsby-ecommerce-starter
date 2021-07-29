@@ -7,13 +7,17 @@
         "eslint:recommended",
         "plugin:react/recommended"
     ],
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
+      "requireConfigFile": false,
+      "babelOptions": {
+        "presets": ["@babel/preset-react"]
+      },
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
     },
     "plugins": [
         "react"
@@ -23,7 +27,8 @@
       "no-redeclare": "warn",
       "no-undef": "warn",
       "react/prop-types": "off",
-      "react/require-default-props": "off"
+      "react/require-default-props": "off",
+       "react/display-name": "off"
     },
     "settings": {
       "react": {
