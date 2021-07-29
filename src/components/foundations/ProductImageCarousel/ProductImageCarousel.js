@@ -1,13 +1,13 @@
 import React from 'react'
-import ImageGallery from 'react-image-gallery'
+import ImageGallery from './react-image-gallery/src/ImageGallery';
 import 'react-image-gallery/styles/css/image-gallery.css'
-import './PhotoGallery.css'
+import './ProductImageCarousel.css'
 import ReactPlayer from 'react-player'
 // import React from 'react';
 
 const PREFIX_URL = 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/'
 
-class PhotoGallery extends React.Component {
+class ProductImageCarousel extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -36,7 +36,7 @@ class PhotoGallery extends React.Component {
       }
       return this.props.images[keyName]
     })
-    console.log('images')
+    console.log('ProductImageCarousel images')
     console.log(this.images)
 
     // this.images = [
@@ -77,9 +77,9 @@ class PhotoGallery extends React.Component {
     console.debug('clicked on image', event.target, 'at index', this._imageGallery.getCurrentIndex())
   }
 
-  _onImageLoad(event) {
-    console.debug('loaded image', event.target.src)
-  }
+  // _onImageLoad(event) {
+  //   console.debug('loaded image', event.target.src)
+  // }
 
   _onSlide(index) {
     this._resetVideo()
@@ -225,7 +225,7 @@ class PhotoGallery extends React.Component {
           // items={images}
           lazyLoad
           onClick={this._onImageClick.bind(this)}
-          onImageLoad={this._onImageLoad}
+          // onImageLoad={this._onImageLoad}
           onSlide={this._onSlide.bind(this)}
           onPause={this._onPause.bind(this)}
           onScreenChange={this._onScreenChange.bind(this)}
@@ -251,6 +251,6 @@ class PhotoGallery extends React.Component {
   }
 }
 
-export default PhotoGallery
+export default ProductImageCarousel
 
 // ReactDOM.render(<App/>, document.getElementById('root'));
