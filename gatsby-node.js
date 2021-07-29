@@ -4,6 +4,18 @@ const onCreateNode = require('./src/gatsby/node/onCreateNode/onCreateNode')
 exports.onCreateNode = onCreateNode
 exports.createPages = createPages
 
+// Errors: "Can't resolve 'net'.If you're trying to use a package make sure that 'net' is installed." etc.
+// Issue: https://github.com/gatsbyjs/gatsby/issues/564
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty'
+    }
+  })
+}
+
 
 // TODO: add all fields
 // Handle empty results in a Gatsby source plug-in:

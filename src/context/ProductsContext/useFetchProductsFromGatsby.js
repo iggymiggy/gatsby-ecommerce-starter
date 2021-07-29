@@ -32,7 +32,9 @@ const useFetchProductsFromGatsby = () => {
                   }
                 }
               }
-              product_video_url
+              product_videos {
+                product_video_url
+              }
             }
           }
         }

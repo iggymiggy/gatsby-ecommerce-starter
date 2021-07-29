@@ -1323,6 +1323,28 @@ class ImageGallery extends React.Component {
     const { onThumbnailError } = this.props;
     const handleThumbnailError = onThumbnailError || this.handleImageError;
 
+    if (item.gatsbyImage) {
+      return (
+        <span className="image-gallery-thumbnail-inner">
+          <GatsbyImage
+            image={item.gatsbyImage}
+            className="image-gallery-thumbnail-image"
+            alt={item.thumbnailAlt}
+            height={item.thumbnailHeight}
+            width={item.thumbnailWidth}
+            onError={handleThumbnailError}
+          />
+          {
+            item.thumbnailLabel && (
+              <div className="image-gallery-thumbnail-label">
+                {item.thumbnailLabel}
+              </div>
+            )
+          }
+        </span>
+      )
+    }
+
     return (
       <span className="image-gallery-thumbnail-inner">
         <img
@@ -1498,7 +1520,7 @@ ImageGallery.propTypes = {
     bulletOnClick: func,
     description: string,
     original: string,
-    gatsbyImage: string,
+    gatsbyImage: shape({}),
     originalHeight: number,
     originalWidth: number,
     thumbnailHeight: number,

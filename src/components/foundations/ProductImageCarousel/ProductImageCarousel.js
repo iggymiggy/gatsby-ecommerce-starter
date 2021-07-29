@@ -30,16 +30,59 @@ class ProductImageCarousel extends React.Component {
       handle: undefined,
     }
 
-    this.images = Object.keys(this.props.images).map((keyName, keyIndex) => {
-      if (typeof this.props.images[keyName].embedUrl !== 'undefined') {
-        return { ...this.props.images[keyName], renderItem: this._renderVideo.bind(this) }
-      }
-      return this.props.images[keyName]
-    })
-    console.log('ProductImageCarousel images')
-    console.log(this.images)
+    // console.log("this.items!!!!!!!!!!!!!!!!!!")
+    // console.log(this.props.items)
+    // const listItems = this.props.items.map((item) =>
+    //     item
+    // );
+    // console.log("listItems")
+    // console.log(listItems)
 
-    // this.images = [
+    // console.log("this.images!!!!!!!!!!!!!!!!!!")
+    // console.log(this.props.images)
+    // const listImages = this.props.images.map((item) =>
+    //     item
+    // );
+    // console.log("listImages")
+    // console.log(listImages)
+    // console.log(Object.keys(this.props.items))
+    this.items = Object.keys(this.props.items).map((keyName, keyIndex) => {
+      // console.log("keyName: " + keyName)
+      // console.log("keyIndex: " + keyIndex)
+      // console.log(this.props.items[keyName])
+      if (typeof this.props.items[keyName].embedUrl !== 'undefined') {
+
+        return { ...this.props.items[keyName], renderItem: this._renderVideo.bind(this) }
+      }
+      return this.props.items[keyName]
+    })
+
+
+    // this.items = []
+
+    // this.props.items.forEach(element => {
+    //   console.log("element!!!!!!!!!!!!!!!!!")
+    //   console.log(element)
+    //   console.log(element.embedUrl)
+    //   if (typeof element.embedUrl !== 'undefined') {
+    //     const item = {
+    //       ...element,
+    //       renderItem: this._renderVideo.bind(this)
+    //     }
+    //     this.items.push(item)
+    //   } else {
+    //     this.items.push(element)
+    //   }
+
+    // });
+    // console.log('ProductImageCarousel items')
+    // console.log(this.props.items)
+    // console.log(this.items)
+
+
+
+
+    // this.items = [
     //   {
     //     thumbnail: `${PREFIX_URL}4v.jpg`,
     //     original: `${PREFIX_URL}4v.jpg`,
@@ -215,14 +258,13 @@ class ProductImageCarousel extends React.Component {
   }
 
   render() {
-    // const { images } = this.props
+    // const { items } = this.props
 
     return (
       <div onMouseOver={this._mouseOver.bind(this)} onMouseLeave={this._mouseLeave.bind(this)}>
         <ImageGallery
           ref={(i) => (this._imageGallery = i)}
-          items={this.images}
-          // items={images}
+          items={this.items}
           lazyLoad
           onClick={this._onImageClick.bind(this)}
           // onImageLoad={this._onImageLoad}

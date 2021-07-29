@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 // import useFetchProducts from './useFetchProducts'
 // TODO:
 import useFetchProductsFromGatsby from './useFetchProductsFromGatsby'
+import { getImage } from 'gatsby-plugin-image'
+import getThumb from 'video-thumbnail-url'
+
 
 const ProductsContext = React.createContext()
 
@@ -37,21 +40,42 @@ function useProductsContext() {
   return context
 }
 
-function findProductElementById(array, id) {
+function findProductNodeById(array, id) {
   // TODO: error handling!!!!
-  // console.log('array:')
-  // console.log(array)
-  // console.log('id:')
-  // console.log(id)
   return array.find((element) => {
-    // console.log('element:')
-    // console.log(element)
-    // console.log('element.node:')
-    // console.log(element.node)
-    // console.log('element.node.id:')
-    // console.log(element.node.id)
     return element.node.id === id
   })
 }
 
-export { useProductsContext, ProductsContextProvider, findProductElementById }
+function createProductImageCarouselItems(product) {
+  const items = []
+
+  // Add videos:
+  product.frontmatter.product_videos.forEach(element => {
+    let url = ""
+    getThumb(element.product_video_url).then(thumb_url => { url = thumb_url });
+    const item = {
+      original: url,
+      thumbnail: url,
+      embedUrl: element.product_video_url,
+    }
+    items.push(item)
+  });
+
+  // Add images:
+  product.frontmatter.product_images.forEach(element => {
+    const gatsbyImage = getImage(element.product_image)
+    const item = {
+      gatsbyImage: gatsbyImage,
+      thumbnail: gatsbyImage,
+    }
+    items.push(item)
+  });
+
+  return items
+}
+
+export { useProductsContext, ProductsContextProvider, findProductNodeById, createProductImageCarouselItems }
+
+
+
