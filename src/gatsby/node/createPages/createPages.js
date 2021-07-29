@@ -48,7 +48,6 @@
 const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
-const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 
 module.exports = async function createPages({ actions, graphql }) {
   const { createPage } = actions

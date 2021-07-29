@@ -1,10 +1,8 @@
 const slug = require('slug')
 const { createFilePath } = require('gatsby-source-filesystem')
-const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 
 const onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
-  fmImagesToRelative(node) // convert image paths for gatsby images
 
   // attach an slug to each sku
   if (node.internal.type === 'StripeSku') {
