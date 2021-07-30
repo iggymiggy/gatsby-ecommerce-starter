@@ -95,24 +95,24 @@ module.exports = {
       },
     },
     'gatsby-plugin-styled-components',
-    {
-      resolve: `gatsby-plugin-react-i18next`,
-      options: {
-        path: `${__dirname}/locales`,
-        languages: [`en`, `es`],
-        defaultLanguage: `en`,
+    // {
+    //   resolve: `gatsby-plugin-react-i18next`,
+    //   options: {
+    //     path: `${__dirname}/locales`,
+    //     languages: [`en`, `es`],
+    //     defaultLanguage: `en`,
 
-        // you can pass any i18next options
-        // pass following options to allow message content as a key
-        i18nextOptions: {
-          interpolation: {
-            escapeValue: false, // not needed for react as it escapes by default
-          },
-          keySeparator: false,
-          nsSeparator: false,
-        },
-      },
-    },
+    //     // you can pass any i18next options
+    //     // pass following options to allow message content as a key
+    //     i18nextOptions: {
+    //       interpolation: {
+    //         escapeValue: false, // not needed for react as it escapes by default
+    //       },
+    //       keySeparator: false,
+    //       nsSeparator: false,
+    //     },
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-gtag`,
       options: {
@@ -182,6 +182,24 @@ module.exports = {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`,
+        customizeWebpackConfig: (config, { stage, plugins }) => {
+          config.resolve = {
+            ...config.resolve,
+            fallback: {
+              ...config.resolve.fallback,
+              assert: require.resolve("assert/"),
+              crypto: require.resolve('crypto-browserify'),
+              http: require.resolve("stream-http"),
+              https: require.resolve("https-browserify"),
+              path: require.resolve("path-browserify"),
+              util: require.resolve("util/"),
+              fs: false,
+              net: false,
+              tls: false,
+              zlib: require.resolve("browserify-zlib"),
+            }
+          };
+        }
       },
     },
     {

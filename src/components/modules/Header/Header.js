@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next'
 import { useThemeContext } from 'context/ThemeContext'
 import Logo from '../../elements/Logo/Logo'
 
-import Cart from './Cart'
 import { Toolbar, LogoWrapper } from './Header.styles'
 import NavigationMobile from './NavigationMobile'
 import NavigationDesktop from './NavigationDesktop'
@@ -32,7 +31,6 @@ export default function Header() {
               <Logo />
             </LogoWrapper>
             {!isMobile && <NavigationDesktop navigationItems={navigationItems} />}
-            <Cart />
           </Toolbar>
         </Container>
       </header>

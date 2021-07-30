@@ -6,13 +6,32 @@ exports.createPages = createPages
 
 // Errors: "Can't resolve 'net'.If you're trying to use a package make sure that 'net' is installed." etc.
 // Issue: https://github.com/gatsbyjs/gatsby/issues/564
-exports.onCreateWebpackConfig = ({ actions }) => {
+// https://github.com/diegomura/react-pdf/issues/1029
+exports.onCreateWebpackConfig = ({ actions, stage, plugins }) => {
+  if (stage === 'build-javascript' || stage === 'develop') {
+    actions.setWebpackConfig({
+      plugins: [
+        plugins.provide({ process: 'process/browser' }),
+        plugins.provide({ Buffer: ['buffer', 'Buffer'] })
+      ]
+    })
+  }
+
+
   actions.setWebpackConfig({
-    node: {
-      fs: 'empty',
-      net: 'empty',
-      tls: 'empty'
-    }
+    resolve: {
+      fallback: {
+        crypto: require.resolve('crypto-browserify'),
+        https: require.resolve("https-browserify"),
+        http: require.resolve("stream-http"),
+        path: require.resolve("path-browserify"),
+        zlib: require.resolve("browserify-zlib"),
+        // util: require.resolve("util/"),
+        fs: false,
+        net: false,
+        tls: false,
+      }
+    },
   })
 }
 

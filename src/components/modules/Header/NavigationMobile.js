@@ -8,7 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { navigate } from 'gatsby'
-import { useI18next, useTranslation } from 'gatsby-plugin-react-i18next'
+// import { useI18next, useTranslation } from 'gatsby-plugin-react-i18next'
 
 import Button from '../../foundations/Button/Button'
 import Logo from '../../elements/Logo/Logo'
@@ -17,8 +17,8 @@ import Logo from '../../elements/Logo/Logo'
 import { LogoWrapper } from './NavigationMobile.styles'
 
 export default function NavigationMobile({ navigationItems }) {
-  const { t } = useTranslation()
-  const { languages, changeLanguage } = useI18next()
+  // const { t } = useTranslation()
+  // const { languages, changeLanguage } = useI18next()
 
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
 
@@ -55,7 +55,7 @@ export default function NavigationMobile({ navigationItems }) {
           ))}
         </List>
 
-        <Divider />
+        {/* <Divider />
 
         <List>
           {languages.map((languageCode) => (
@@ -66,7 +66,7 @@ export default function NavigationMobile({ navigationItems }) {
               </ListItem>
             </div>
           ))}
-        </List>
+        </List> */}
       </Drawer>
     </>
   )

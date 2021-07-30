@@ -3,10 +3,10 @@ import React from 'react'
 
 import Select from 'components/foundations/Select/Select'
 import sizes from 'constants/sizes'
-import { useCartContext } from 'context/CartContext'
+// import { useCartContext } from 'context/CartContext'
 
 export default function ProductSizes({ productSelected, skuSelected, sizeSelected, setSizeSelected }) {
-  const [, dispatch] = useCartContext()
+  // const [, dispatch] = useCartContext()
 
   const options = Object.keys(productSelected.skuIds[skuSelected.attributes.color]).map((sizeId) => ({
     key: sizeId,
@@ -15,7 +15,7 @@ export default function ProductSizes({ productSelected, skuSelected, sizeSelecte
   }))
 
   const setValueSelected = (valueSelected) => {
-    dispatch({ type: 'UPDATE_SKU_SIZE_SELECTED', payload: { skuSizeSelected: valueSelected } })
+    // dispatch({ type: 'UPDATE_SKU_SIZE_SELECTED', payload: { skuSizeSelected: valueSelected } })
     setSizeSelected(valueSelected)
   }
 

@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
-import { useTranslation, useI18next } from 'gatsby-plugin-react-i18next'
+// import { useTranslation, useI18next } from 'gatsby-plugin-react-i18next'
 
 import Link from '../../foundations/Link/Link'
 
 import { NavBar, NavBarItem } from './NavigationDesktop.styles'
 
 export default function NavigationDesktop({ navigationItems }) {
-  const { t } = useTranslation()
-  const { languages, originalPath } = useI18next()
+  // const { t } = useTranslation()
+  // const { languages, originalPath } = useI18next()
 
   return (
     <>
@@ -24,7 +24,7 @@ export default function NavigationDesktop({ navigationItems }) {
           </NavBarItem>
         ))}
       </NavBar>
-      <NavBar>
+      {/* <NavBar>
         {languages.map((languageCode) => (
           <NavBarItem key={languageCode}>
             <Link to={originalPath} language={languageCode}>
@@ -33,7 +33,7 @@ export default function NavigationDesktop({ navigationItems }) {
             </Link>
           </NavBarItem>
         ))}
-      </NavBar>
+      </NavBar> */}
     </>
   )
 }

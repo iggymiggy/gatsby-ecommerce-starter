@@ -5,7 +5,6 @@ import { ThemeProvider } from '@material-ui/core/styles'
 
 import { ThemeContextProvider } from 'context/ThemeContext'
 import { ProductsContextProvider } from 'context/ProductsContext'
-import { CartContextProvider } from 'context/CartContext'
 import theme from 'theme'
 
 import Header from 'components/modules/Header/Header'
@@ -30,13 +29,11 @@ export default function LayoutTemplate({ children }) {
         <ThemeProvider theme={theme}>
           <ThemeContextProvider>
             <ProductsContextProvider>
-              <CartContextProvider>
-                <Root>
-                  <Header siteTitle={data.site.siteMetadata.title} />
-                  <Container component="main">{children}</Container>
-                  <Footer />
-                </Root>
-              </CartContextProvider>
+              <Root>
+                <Header siteTitle={data.site.siteMetadata.title} />
+                <Container component="main">{children}</Container>
+                <Footer />
+              </Root>
             </ProductsContextProvider>
           </ThemeContextProvider>
         </ThemeProvider>
