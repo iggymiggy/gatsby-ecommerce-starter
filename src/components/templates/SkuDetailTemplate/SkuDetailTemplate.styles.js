@@ -10,7 +10,7 @@ export const PageContent = styled(Box)`
   }
 `
 export const ProductImage = styled(Box)`
-  flex: 1;
+  flex: 2;
   margin-bottom: ${({ $isMobile }) => ($isMobile ? `${theme.spacing(2)}px` : `${theme.spacing(0)}px`)};
   margin-right: ${({ $isMobile }) => ($isMobile ? `${theme.spacing(0)}px` : `${theme.spacing(3)}px`)};
 `
