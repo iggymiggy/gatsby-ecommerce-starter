@@ -1248,7 +1248,7 @@ class ImageGallery extends React.Component {
         <div>
           <GatsbyImage
             image={item.gatsbyImage}
-            className="image-gallery-image"
+            imgClassName="image-gallery-image"
             alt={item.originalAlt}
             height={item.originalHeight}
             width={item.originalWidth}

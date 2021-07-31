@@ -18,12 +18,12 @@ class ProductImageCarousel extends React.Component {
       showGalleryFullscreenButton: true,
       showPlayButton: false,
       showGalleryPlayButton: true,
-      showNav: false,
+      showNav: true,
       isRTL: false,
       slideDuration: 450,
       slideInterval: 2000,
-      slideOnThumbnailOver: false,
-      thumbnailPosition: 'bottom',
+      slideOnThumbnailOver: true,
+      thumbnailPosition: 'left',
       showVideo: {},
       useWindowKeyDown: true,
       handle: undefined,
@@ -157,15 +157,15 @@ class ProductImageCarousel extends React.Component {
   }
 
   _mouseLeave() {
-    this.setState({
-      showNav: false,
-      showBullets: false,
-      showFullscreenButton: false,
-      showGalleryFullscreenButton: false,
-      showIndex: false,
+    // this.setState({
+    //   showNav: false,
+    //   showBullets: false,
+    //   showFullscreenButton: false,
+    //   showGalleryFullscreenButton: false,
+    //   showIndex: false,
 
-      // isButtonDisabled: true
-    })
+    //   // isButtonDisabled: true
+    // })
 
     console.debug('_mouseLeave')
   }
@@ -173,13 +173,14 @@ class ProductImageCarousel extends React.Component {
   _mouseOver() {
     // event.preventDefault();
 
-    this.setState({
-      showNav: true,
-      showBullets: true,
-      showFullscreenButton: true,
-      showGalleryFullscreenButton: true,
-      showIndex: true,
-    })
+    // this.setState({
+    //   showNav: true,
+    //   showBullets: true,
+    //   showFullscreenButton: true,
+    //   showGalleryFullscreenButton: true,
+    //   showIndex: true,
+    // })
+    console.debug('_mouseOver')
 
   }
 
