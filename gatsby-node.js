@@ -1,8 +1,10 @@
 const createPages = require('./src/gatsby/node/createPages/createPages')
+// const createCategoryPages = require('./src/gatsby/node/createPages/createCategoryPages')
 const onCreateNode = require('./src/gatsby/node/onCreateNode/onCreateNode')
 
 exports.onCreateNode = onCreateNode
 exports.createPages = createPages
+// exports.createPages = createCategoryPages
 
 // Errors: "Can't resolve 'net'.If you're trying to use a package make sure that 'net' is installed." etc.
 // Issue: https://github.com/gatsbyjs/gatsby/issues/564
@@ -10,32 +12,27 @@ exports.createPages = createPages
 exports.onCreateWebpackConfig = ({ actions, stage, plugins }) => {
   if (stage === 'build-javascript' || stage === 'develop') {
     actions.setWebpackConfig({
-      plugins: [
-        plugins.provide({ process: 'process/browser' }),
-        plugins.provide({ Buffer: ['buffer', 'Buffer'] })
-      ]
+      plugins: [plugins.provide({ process: 'process/browser' }), plugins.provide({ Buffer: ['buffer', 'Buffer'] })],
     })
   }
-
 
   actions.setWebpackConfig({
     resolve: {
       fallback: {
         crypto: require.resolve('crypto-browserify'),
-        https: require.resolve("https-browserify"),
-        http: require.resolve("stream-http"),
-        os: require.resolve("os-browserify/browser"),
-        path: require.resolve("path-browserify"),
-        zlib: require.resolve("browserify-zlib"),
+        https: require.resolve('https-browserify'),
+        http: require.resolve('stream-http'),
+        os: require.resolve('os-browserify/browser'),
+        path: require.resolve('path-browserify'),
+        zlib: require.resolve('browserify-zlib'),
         // util: require.resolve("util/"),
         fs: false,
         net: false,
         tls: false,
-      }
+      },
     },
   })
 }
-
 
 // TODO: add all fields
 // Handle empty results in a Gatsby source plug-in:

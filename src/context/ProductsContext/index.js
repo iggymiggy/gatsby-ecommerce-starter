@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-// import useFetchProducts from './useFetchProducts'
 // TODO:
 import useFetchProductsFromGatsby from './useFetchProductsFromGatsby'
 import { getImage } from 'gatsby-plugin-image'
@@ -14,10 +12,7 @@ const ProductsContext = React.createContext()
  * Wrapper to give Provider access to Sku nodes from Gatsby's GraphQL store.
  */
 const ProductsContextProvider = ({ children }) => {
-  // const { data } = useFetchProducts()
   const { data } = useFetchProductsFromGatsby()
-  console.log('data')
-  console.log(data)
 
   if (!data) {
     return null

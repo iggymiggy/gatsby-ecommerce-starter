@@ -6,8 +6,6 @@ import Image from 'components/foundations/Image/Image'
 import { Background } from './ImageLocal.styles'
 
 export default function ImageLocal({ localFiles, alt }) {
-  console.log('localfiles')
-  console.log(localFiles)
   if (
     !localFiles ||
     !localFiles[0] ||

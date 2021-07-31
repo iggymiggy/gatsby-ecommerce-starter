@@ -1,10 +1,8 @@
 import React from 'react'
-import ImageGallery from './react-image-gallery/src/ImageGallery';
+import ImageGallery from './react-image-gallery/src/ImageGallery'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import './ProductImageCarousel.css'
 import ReactPlayer from 'react-player'
-
-// const PREFIX_URL = 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/'
 
 class ProductImageCarousel extends React.Component {
   constructor(props) {
@@ -29,48 +27,12 @@ class ProductImageCarousel extends React.Component {
       handle: undefined,
     }
 
-    this.items = Object.keys(this.props.items).map((keyName, keyIndex) => {
+    this.items = Object.keys(this.props.items).map((keyName) => {
       if (typeof this.props.items[keyName].embedUrl !== 'undefined') {
         return { ...this.props.items[keyName], renderItem: this._renderVideo.bind(this) }
       }
       return this.props.items[keyName]
     })
-
-    console.log('ProductImageCarousel items')
-    console.log(this.props.items)
-    console.log(this.items)
-
-    // this.items = [
-    //   {
-    //     thumbnail: `${PREFIX_URL}4v.jpg`,
-    //     original: `${PREFIX_URL}4v.jpg`,
-    //     embedUrl: 'https://www.youtube.com/embed/4pSzhZ76GdM?autoplay=1&showinfo=0',
-    //     description: 'Play video',
-    //     renderItem: this._renderVideo.bind(this),
-    //   },
-    //   {
-    //     original: `${PREFIX_URL}image_set_default.jpg`,
-    //     thumbnail: `${PREFIX_URL}image_set_thumb.jpg`,
-    //     imageSet: [
-    //       {
-    //         srcSet: `${PREFIX_URL}image_set_cropped.jpg`,
-    //         media: '(max-width: 1280px)',
-    //       },
-    //       {
-    //         srcSet: `${PREFIX_URL}image_set_default.jpg`,
-    //         media: '(min-width: 1280px)',
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     original: `${PREFIX_URL}1.jpg`,
-    //     thumbnail: `${PREFIX_URL}1t.jpg`,
-    //     // originalClass: 'featured-slide',
-    //     // thumbnailClass: 'featured-thumb',
-    //     description: 'Custom class for slides & thumbnails',
-    //   },
-    // // ].concat(this._getStaticImages())
-    // ]
   }
 
   _onImageClick(event) {
@@ -113,18 +75,6 @@ class ProductImageCarousel extends React.Component {
     this.setState({ thumbnailPosition: event.target.value })
   }
 
-  // _getStaticImages() {
-  //   const images = []
-  //   for (let i = 2; i < 12; i++) {
-  //     images.push({
-  //       original: `${PREFIX_URL}${i}.jpg`,
-  //       thumbnail: `${PREFIX_URL}${i}t.jpg`,
-  //     })
-  //   }
-
-  //   return images
-  // }
-
   _resetVideo() {
     this.setState({ showVideo: {} })
 
@@ -138,12 +88,11 @@ class ProductImageCarousel extends React.Component {
   }
 
   _toggleShowVideo(url) {
-
     this.setState({
       showVideo: {
         [url]: !this.state.showVideo[url],
-      }
-    });
+      },
+    })
 
     if (this.state.showVideo[url]) {
       if (this.state.showPlayButton) {
@@ -181,7 +130,6 @@ class ProductImageCarousel extends React.Component {
     //   showIndex: true,
     // })
     console.debug('_mouseOver')
-
   }
 
   _renderVideo(item) {
@@ -192,7 +140,7 @@ class ProductImageCarousel extends React.Component {
             <a className="close-video" onClick={this._toggleShowVideo.bind(this, item.embedUrl)} />
             {/* <iframe width="560" height="315" src={item.embedUrl} frameBorder="0" allowFullScreen /> */}
             <ReactPlayer
-              url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+              url={item.embedUrl}
               config={{
                 youtube: {
                   playerVars: { showinfo: 1, autoplay: 1, controls: 1 },
