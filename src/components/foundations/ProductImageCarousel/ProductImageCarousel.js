@@ -3,9 +3,8 @@ import ImageGallery from './react-image-gallery/src/ImageGallery';
 import 'react-image-gallery/styles/css/image-gallery.css'
 import './ProductImageCarousel.css'
 import ReactPlayer from 'react-player'
-// import React from 'react';
 
-const PREFIX_URL = 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/'
+// const PREFIX_URL = 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/'
 
 class ProductImageCarousel extends React.Component {
   constructor(props) {
@@ -30,57 +29,16 @@ class ProductImageCarousel extends React.Component {
       handle: undefined,
     }
 
-    // console.log("this.items!!!!!!!!!!!!!!!!!!")
-    // console.log(this.props.items)
-    // const listItems = this.props.items.map((item) =>
-    //     item
-    // );
-    // console.log("listItems")
-    // console.log(listItems)
-
-    // console.log("this.images!!!!!!!!!!!!!!!!!!")
-    // console.log(this.props.images)
-    // const listImages = this.props.images.map((item) =>
-    //     item
-    // );
-    // console.log("listImages")
-    // console.log(listImages)
-    // console.log(Object.keys(this.props.items))
     this.items = Object.keys(this.props.items).map((keyName, keyIndex) => {
-      // console.log("keyName: " + keyName)
-      // console.log("keyIndex: " + keyIndex)
-      // console.log(this.props.items[keyName])
       if (typeof this.props.items[keyName].embedUrl !== 'undefined') {
-
         return { ...this.props.items[keyName], renderItem: this._renderVideo.bind(this) }
       }
       return this.props.items[keyName]
     })
 
-
-    // this.items = []
-
-    // this.props.items.forEach(element => {
-    //   console.log("element!!!!!!!!!!!!!!!!!")
-    //   console.log(element)
-    //   console.log(element.embedUrl)
-    //   if (typeof element.embedUrl !== 'undefined') {
-    //     const item = {
-    //       ...element,
-    //       renderItem: this._renderVideo.bind(this)
-    //     }
-    //     this.items.push(item)
-    //   } else {
-    //     this.items.push(element)
-    //   }
-
-    // });
-    // console.log('ProductImageCarousel items')
-    // console.log(this.props.items)
-    // console.log(this.items)
-
-
-
+    console.log('ProductImageCarousel items')
+    console.log(this.props.items)
+    console.log(this.items)
 
     // this.items = [
     //   {

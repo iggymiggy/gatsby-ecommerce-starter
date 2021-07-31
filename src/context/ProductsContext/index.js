@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 // TODO:
 import useFetchProductsFromGatsby from './useFetchProductsFromGatsby'
 import { getImage } from 'gatsby-plugin-image'
-import getThumb from 'video-thumbnail-url'
+import getThumb from '../../functions/videoThumbnailUrl'
 
 
 const ProductsContext = React.createContext()
@@ -49,17 +49,17 @@ function findProductNodeById(array, id) {
 
 function createProductImageCarouselItems(product) {
   const items = []
+  const video_items = []
 
   // Add videos:
-  product.frontmatter.product_videos.forEach(element => {
-    let url = ""
-    getThumb(element.product_video_url).then(thumb_url => { url = thumb_url });
+  product.frontmatter.product_videos.map(element => {
+    const thumbUrl = getThumb(element.product_video_url)
     const item = {
-      original: url,
-      thumbnail: url,
+      original: thumbUrl,
+      thumbnail: thumbUrl,
       embedUrl: element.product_video_url,
     }
-    items.push(item)
+    video_items.push(item)
   });
 
   // Add images:
@@ -72,7 +72,7 @@ function createProductImageCarouselItems(product) {
     items.push(item)
   });
 
-  return items
+  return [...items, ...video_items]
 }
 
 export { useProductsContext, ProductsContextProvider, findProductNodeById, createProductImageCarouselItems }
