@@ -2,16 +2,17 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 
-export default function ProductName({ product }) {
+export default function ProductName({ productName }) {
+  console.log('PRODUCT NAME:')
+  console.log(productName)
+
   return (
     <Typography variant="caption" component="h3">
-      {product.name}
+      {productName}
     </Typography>
   )
 }
 
 ProductName.propTypes = {
-  product: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
+  productName: PropTypes.string.isRequired,
 }

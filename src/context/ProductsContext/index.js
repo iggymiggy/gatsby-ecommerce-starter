@@ -5,7 +5,6 @@ import useFetchProductsFromGatsby from './useFetchProductsFromGatsby'
 import { getImage } from 'gatsby-plugin-image'
 import getThumb from '../../functions/videoThumbnailUrl'
 
-
 const ProductsContext = React.createContext()
 
 /**
@@ -42,12 +41,36 @@ function findProductNodeById(array, id) {
   })
 }
 
+function fetchProductListItems(allProducts, sportKey, product_category) {
+  const items = []
+
+  console.log('CATEGORIES:  ')
+  console.log(sportKey)
+  console.log(product_category)
+  allProducts.forEach((element) => {
+    if (
+      element.node.frontmatter.sportKey === sportKey &&
+      element.node.frontmatter.product_category === product_category
+    ) {
+      let updatedElement = {
+        ...element,
+        productListImage: getImage(element.node.frontmatter.product_images[0].product_image),
+      }
+      console.log('PUSH updatedElement: ')
+      console.log(updatedElement)
+      items.push(updatedElement)
+    }
+  })
+  console.log(items)
+  return items
+}
+
 function createProductImageCarouselItems(product) {
   const items = []
   const video_items = []
 
   // Add videos:
-  product.frontmatter.product_videos.map(element => {
+  product.frontmatter.product_videos.map((element) => {
     const thumbUrl = getThumb(element.product_video_url)
     const item = {
       original: thumbUrl,
@@ -55,22 +78,25 @@ function createProductImageCarouselItems(product) {
       embedUrl: element.product_video_url,
     }
     video_items.push(item)
-  });
+  })
 
   // Add images:
-  product.frontmatter.product_images.forEach(element => {
+  product.frontmatter.product_images.forEach((element) => {
     const gatsbyImage = getImage(element.product_image)
     const item = {
       gatsbyImage: gatsbyImage,
       thumbnail: gatsbyImage,
     }
     items.push(item)
-  });
+  })
 
   return [...items, ...video_items]
 }
 
-export { useProductsContext, ProductsContextProvider, findProductNodeById, createProductImageCarouselItems }
-
-
-
+export {
+  useProductsContext,
+  ProductsContextProvider,
+  findProductNodeById,
+  fetchProductListItems,
+  createProductImageCarouselItems,
+}

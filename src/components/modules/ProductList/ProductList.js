@@ -13,27 +13,29 @@ import ProductPrice from './ProductPrice'
 import ProductName from './ProductName'
 import filterProductList from './filterProductList'
 
-export default function ProductList({ filters }) {
+export default function ProductList({ products }) {
   const { isMobile } = useThemeContext()
   // const { products, skus, productsIdsAll, productsIdsByCategory } = useProductsContext()
-  const { products } = useProductsContext()
+  // const { products } = useProductsContext()
 
   // const productsListFiltered = filterProductList({ productsIdsAll, productsIdsByCategory, filters })
 
+  console.log('Products: ')
+  console.log(products)
   return (
     <GridList cols={isMobile ? 2 : 4} cellHeight="auto">
-      peelo2
-      {/* {productsListFiltered.map((productId) => (
-        <GridListTile key={productId}>
-          <Link to={`/${skus[products[productId].skuDefaultId].fields.slug}`}>
-            <ImageLocal localFiles={products[productId].localFiles} alt={products[productId].name} />
+      {/* TODO: fix products.products */}
+      {products.products.map((product) => (
+        <GridListTile key={product.node.frontmatter.product_brand}>
+          <Link to={product.node.fields.slug}>
+            <ImageLocal productListImage={product.productListImage} alt={product.node.frontmatter.product_brand} />
             <ProductDetails $isMobile={isMobile}>
-              <ProductName product={products[productId]} />
-              <ProductPrice product={products[productId]} />
+              <ProductName productName={product.node.frontmatter.product_brand} />
+              <ProductPrice product={'10'} />
             </ProductDetails>
           </Link>
         </GridListTile>
-      ))} */}
+      ))}
     </GridList>
   )
 }
