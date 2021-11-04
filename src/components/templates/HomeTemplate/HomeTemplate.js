@@ -7,7 +7,8 @@ export default function HomePage() {
   return (
     <>
       <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
-      <ProductList />
+      {/* TODO: Fix */}
+      {/* <ProductList /> */}
     </>
   )
 }
