@@ -70,25 +70,27 @@ function createProductImageCarouselItems(product) {
   const video_items = []
 
   // Add videos:
-  product.frontmatter.product_videos.map((element) => {
-    const thumbUrl = getThumb(element.product_video_url)
-    const item = {
-      original: thumbUrl,
-      thumbnail: thumbUrl,
-      embedUrl: element.product_video_url,
-    }
-    video_items.push(item)
-  })
+  product.frontmatter.product_videos &&
+    product.frontmatter.product_videos.map((element) => {
+      const thumbUrl = getThumb(element.product_video_url)
+      const item = {
+        original: thumbUrl,
+        thumbnail: thumbUrl,
+        embedUrl: element.product_video_url,
+      }
+      video_items.push(item)
+    })
 
   // Add images:
-  product.frontmatter.product_images.forEach((element) => {
-    const gatsbyImage = getImage(element.product_image)
-    const item = {
-      gatsbyImage: gatsbyImage,
-      thumbnail: gatsbyImage,
-    }
-    items.push(item)
-  })
+  product.frontmatter.product_images &&
+    product.frontmatter.product_images.forEach((element) => {
+      const gatsbyImage = getImage(element.product_image)
+      const item = {
+        gatsbyImage: gatsbyImage,
+        thumbnail: gatsbyImage,
+      }
+      items.push(item)
+    })
 
   return [...items, ...video_items]
 }
