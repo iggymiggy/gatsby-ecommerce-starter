@@ -6,4 +6,15 @@ module.exports = {
       path: `./.env.development`,
     }),
   ],
+  // resolve: {
+  //   fallback: {
+  //     crypto: require.resolve('crypto-browserify'),
+  //     https: require.resolve("https-browserify"),
+  //   }
+  // },
+  // node: {
+  //   fs: 'empty',
+  //   net: 'empty',
+  //   tls: 'empty'
+  // },
 }
