@@ -8,6 +8,10 @@ import { PageContent, ProductImage, ProductDetails } from './SkuDetailTemplate.s
 import ProductName from './ProductName'
 import Description from './Description'
 
+// var Dropzone = require('react-dynamic-dropzone')
+
+// import { DropzoneDemo } from './Dropzone'
+// import Filepond from './Filepond'
 export default function SkuDetailPage({ pageContext: { id } }) {
   const { isMobile } = useThemeContext()
   const productSelected = findProductNodeById(useProductsContext(), id).node
@@ -19,6 +23,7 @@ export default function SkuDetailPage({ pageContext: { id } }) {
         <ProductImageCarousel items={items} />
       </ProductImage>
       <ProductDetails>
+        {/* <Filepond /> */}
         <ProductName productSelected={productSelected} />
         <Divider />
         <hr />
