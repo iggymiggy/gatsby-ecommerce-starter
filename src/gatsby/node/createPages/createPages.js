@@ -1,3 +1,5 @@
+// const ProductsContext = require('context/ProductsContext')
+const productQueries = require('../../../functions/productQueries')
 const _ = require('lodash')
 const path = require('path')
 
@@ -59,20 +61,23 @@ module.exports = async function createPages({ actions, graphql }) {
       }
     })
 
-    for (sportCategory in sportCategories) {
+    const windsurf_boards = productQueries.fetchProductListItems(sportCategories, 'windsurf', 'board')
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    console.log(windsurf_boards)
+    for (sportKey in sportCategories) {
       // Eliminate duplicate sportCategories
-      sportCategories[sportCategory] = _.uniq(sportCategories[sportCategory])
+      sportCategories[sportKey] = _.uniq(sportCategories[sportKey])
 
       // Make category pages
-      sportCategories[sportCategory].forEach((productCategory) => {
-        const categoryPath = `/${sportCategory}/product/${productCategory}/`
+      sportCategories[sportKey].forEach((product_category) => {
+        const categoryPath = `/${sportKey}/product/${product_category}/`
         console.log('CREATE CATEGORY PAGE!!!!!!!!!!')
         createPage({
           path: categoryPath,
           component: path.resolve('src/components/templates/CategoryTemplate/CategoryTemplate.js'),
           context: {
-            sportCategory,
-            productCategory,
+            sportKey,
+            product_category,
           },
         })
       })
